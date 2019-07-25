@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <button type="button"><p:link outcome="ajouter" value="Navigate"></p:link></button>
+                <h1><h:outputText value="Liste des etudiants"/></h1>
+                <p:dataTable value="#{monMBean.allUsers}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Numcarte"/>
+                        </f:facet>
+                        <h:outputText value="#{item.numcarte}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nom}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prenom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.prenom}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Action"/>
+                        </f:facet>
+                        <h:commandButton value="supprimer" action="#{monMBean.supp(item.numcarte)}" onclick="return confirm('Etes vous sure de vouloir supprimer?')"></h:commandButton>
+                        <h:commandButton value="modifier" action="#{monMBean.modif(item.numcarte)}"></h:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </f:view>
+<br/>
+
+        <p:link value="Ajouter" outcome="ajouter"></p:link>
+        
+
+    </h:body>
+
+
+</html>
